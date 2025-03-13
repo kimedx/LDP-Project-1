@@ -1,3 +1,19 @@
+## Results for Submission
+Harim Kim (Eagle ID - 12079484)
+
+### Part 1
+
+| k | Nonce (x) | Hash | Time Elapsed | Trials |
+|--------------|---------|------|--------------|--------|
+| 2 | 65032395 | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 1s | 100 |
+| 3 | 556831209 | 0069dcaed4ea67f763db2498b5bbfadc56f819e086bfb1314ddf8f484965b0fe | 1s | 1000 |
+| 4 |  | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 1s | 100 |
+| 5 |  | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 1s | 100 |
+| 6 |  | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 1s | 100 |
+
+### Part 2
+
+
 # Large Scale Data Processing: Project 1
 ## Understanding Git
 If you're unfamiliar with version control systems, especially Git, please consult the [Git Handbook](https://guides.github.com/introduction/git-handbook/) and some of the additional resources it provides.
