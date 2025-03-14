@@ -1,7 +1,7 @@
 ## Results for Submission
 Harim Kim (Eagle ID - 12079484)
 
-### Part 1
+### Part 1 (Local Machine Test)
 
 | k | Nonce (x) | Hash | Time Elapsed | Trials |
 |--------------|---------|------|--------------|--------|
@@ -11,7 +11,35 @@ Harim Kim (Eagle ID - 12079484)
 | 5 | 1326396055 | 0000077d96fed27eef2f11064854ddb42c5c69814f3134a16052f02f341f77f0 | 2s | 512,000 |
 | 6 | 1075148429 | 000000239786ed7c7916fa9c8f6a36a9c9736ad1aa95bfdbd6518556394cb259 | 6s | 16,384,000 |
 
-### Part 2
+### Part 2 (GCP Test)
+
+| k | Nonce (x) | Hash | Time Elapsed | Trials |
+|--------------|---------|------|--------------|--------|
+| 7 | 65032395 | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 5s | 32,000,000 |
+
+### Part 3
+
+## Modified Code
+Line 54-57
+From: val nonce = sc.range(0, trials).mapPartitionsWithIndex((indx, iter) => {
+      val rand = new scala.util.Random(indx + seed)
+      iter.map(x => rand.nextInt(Int.MaxValue - 1) + 1)
+})
+
+To: val nonce = sc.range(1, trials + 1)
+
+## Trials Using Modified Code (Local Machine & GCP)
+| k | Nonce (x) | Hash | Time Elapsed | Trials |
+|--------------|---------|------|--------------|--------|
+| 2 | 126246979 | 004df179d052db3024da748b1915972c478d4a54cce39d0c820c40a94bb457e6 | 1s | 100 |
+| 3 | 2088957329 | 000e697ca2870cf6d80279114c972fed132c7e4cff62cebfde6d55ad4c13d8a0 | 1s | 2,000 |
+| 4 | 273225576 | 0000ec9888b8af440937dfba47049dc314682b1e027b3bc2f9e95b891f0e71ab | 2s | 256,000 |
+| 5 | 1369641629 | 00000b07dc3fe6ad4839c25d2ef87f739be06ce850137aea0ac3f50e13b48250 | 2s | 512,000 |
+| 6 | 1588971895 | 00000052a957efab3ead1a41c60bd97dcae79258451f98d6f0687906a3fee5f5 | 11s | 32,000,000 |
+| 7 (GCP) | 290148049 | 000000081340fef1fd268f07cbe69d0e255409e755edb42325c1e04273d78299 | 24s | 256,000,000 |
+
+## Analysis of Results
+Sequentially checking the nonce values from 1 to trials (n) will allow gradual progression for the search, eventually guaranteeing that the program will find the value with sufficient allocation of space and time. However, though the random sampling of the nonce may not guarantee such progression, it still has the chance to find the matching nonce value faster as there is no assumable distribution of the nonce values. With regards to searching the nonce value itself, the sequential search allows gradual search for the nonce value through gradual increments which will eventually identify the nonce value at the cost of runtime and repetitions when the nonce value is large, while the random sampling approach could repeatedly execute the program with the same number of trials and potentially find the nonce value at the cost of low probability of the finding the value when the trials are significantly small compared to the difficulty. This difference is noticeable when comparing the two tables, especially when k = 4, 6, 7.
 
 
 # Large Scale Data Processing: Project 1
