@@ -15,7 +15,7 @@ Harim Kim (Eagle ID - 12079484)
 
 | k | Nonce (x) | Hash | Time Elapsed | Trials |
 |--------------|---------|------|--------------|--------|
-| 7 | 65032395 | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 5s | 32,000,000 |
+| 7 | 65032395 | 00c3949724ed1ead91779c2ee6cc724b08659af99e7cda7a9f1b6413e87c0841 | 243s | 32,000,000 |
 
 ### Part 3
 
@@ -36,7 +36,7 @@ To: val nonce = sc.range(1, trials + 1)
 | 4 | 273225576 | 0000ec9888b8af440937dfba47049dc314682b1e027b3bc2f9e95b891f0e71ab | 2s | 256,000 |
 | 5 | 1369641629 | 00000b07dc3fe6ad4839c25d2ef87f739be06ce850137aea0ac3f50e13b48250 | 2s | 512,000 |
 | 6 | 1588971895 | 00000052a957efab3ead1a41c60bd97dcae79258451f98d6f0687906a3fee5f5 | 11s | 32,000,000 |
-| 7 (GCP) | 290148049 | 000000081340fef1fd268f07cbe69d0e255409e755edb42325c1e04273d78299 | 24s | 256,000,000 |
+| 7 (GCP) | 290148049 | 000000081340fef1fd268f07cbe69d0e255409e755edb42325c1e04273d78299 | 2246s | 256,000,000 |
 
 ## Analysis of Results
 Sequentially checking the nonce values from 1 to trials (n) will allow gradual progression for the search, eventually guaranteeing that the program will find the value with sufficient allocation of space and time. However, though the random sampling of the nonce may not guarantee such progression, it still has the chance to find the matching nonce value faster as there is no assumable distribution of the nonce values. With regards to searching the nonce value itself, the sequential search allows gradual search for the nonce value through gradual increments which will eventually identify the nonce value at the cost of runtime and repetitions when the nonce value is large, while the random sampling approach could repeatedly execute the program with the same number of trials and potentially find the nonce value at the cost of low probability of the finding the value when the trials are significantly small compared to the difficulty. This difference is noticeable when comparing the two tables, especially when k = 4, 6, 7.
